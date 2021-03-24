@@ -1,0 +1,46 @@
+<?php
+
+function prx($arr)
+{
+    echo "<pre>";
+    print_r($arr);
+    die();
+}
+
+function pr($arr)
+{
+    echo "<pre>";
+    print_r($arr);
+}
+
+
+function get_safe_value($conn, $str)
+{
+    if ($str != "") {
+        $str = htmlentities(trim($str));
+        return  mysqli_real_escape_string($conn, $str);
+    }
+}
+
+
+function not_found($col)
+{
+    echo "<tr>
+             <td colspan='{$col}' class='text-center'><h1>Record Not Found</h1></td>              
+           </tr>";
+}
+
+function status($status, $active, $status_id)
+{
+    if ($status == $active) {
+        echo "<a href='?type=status&operation=deactive&id={$status_id}' class='btn btn-success'>Active</a>";
+    } else {
+        echo "<a href='?type=status&operation=active&id={$status_id}' class='btn btn-danger'>Deactive</a> ";
+    }
+}
+
+
+function Modify_btn($id)
+{
+    echo "<a href='manage_category.php?type=edit&id={$id}' class='btn btn-primary mx-3'>Edit</a>" . "<a href='?type=delete&id={$id}' class='btn btn-danger'>Delete</a>";
+}
